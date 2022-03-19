@@ -1,4 +1,4 @@
-
+window.addEventListener('load', init);
 
 const levels = {
   easy: 7,
@@ -6,19 +6,10 @@ const levels = {
   hard: 3
 };
 
+const currentLevel = levels.hard;
 
-let currentLevel;
-(function (){
-    var radios = document.getElementsByName('opt');
-    console.log(radios);
-    for(var i = 0; i < radios.length; i++){
-        radios[i].onclick = function(){
-            currentLevel = this.value;
-        }
-    }
-})();
 
-alert(currentLevel);
+
 let time = currentLevel;
 let score = 0;
 let isPlaying;
@@ -64,17 +55,17 @@ const words=[
     'space',
     'definition'
     ];
-
-
-
-
-
+  
+  
+  
+    function init()
+    {
     	seconds.innerHTML=currentLevel;
     	displayWord(words);
     	wordInput.addEventListener('input', startMatch);
       setInterval(countdown, 1000);
     	setInterval(checkStatus, 50);
-
+    }
 
 
 
@@ -87,7 +78,7 @@ const words=[
         score++;
      }
 
-
+  
        if (score === -1) {
          scoreDisplay.innerHTML = 0;
         } else {
@@ -105,27 +96,27 @@ const words=[
       }
     }
 
-
+    
     function displayWord(words)
     {
     	const indx=Math.floor(Math.random()*words.length);
     	currentWord.innerHTML=words[indx];
     }
 
-
-
+     
+    
      function countdown() {
-
+  
       if (time > 0) {
         time--;
       } else if (time === 0) {
-
+   
       isPlaying = false;
     }
-
+ 
      timeDisplay.innerHTML = time;
     }
-
+    
 
     function checkStatus() {
         if (!isPlaying && time === 0) {
@@ -133,3 +124,4 @@ const words=[
            score = -1;
         }
     }
+   
